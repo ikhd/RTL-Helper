@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>RTL Helper</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="container" id="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">ع</div>
+      <div class="title-block">
+        <span class="title">RTL Helper</span>
+        <span class="subtitle" id="subtitle">مساعد الكتابة العربية</span>
+      </div>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-ar" data-lang="ar">AR</button>
+      <button class="lang-btn" id="btn-en" data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <!-- Master Toggle -->
+  <div class="master-section" id="masterSection">
+    <div class="master-label">
+      <div class="master-icon">⚡</div>
+      <div class="master-text">
+        <strong id="lbl-enabled">تفعيل الإضافة</strong>
+        <span id="lbl-enabled-sub">تطبيق RTL على الصفحات</span>
+      </div>
+    </div>
+    <label class="toggle">
+      <input type="checkbox" id="enabled">
+      <span class="track"></span>
+    </label>
+  </div>
+
+  <!-- Sites Section -->
+  <div class="section">
+    <div class="section-title" id="lbl-sites">المواقع</div>
+    <div class="cards">
+
+      <div class="card" id="card-claudeEnabled">
+        <div class="card-left">
+          <div class="card-icon">🧠</div>
+          <span class="card-text" id="lbl-claudeEnabled">تفعيل على Claude</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="claudeEnabled">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="card" id="card-customEnabled">
+        <div class="card-left">
+          <div class="card-icon">🌐</div>
+          <span class="card-text" id="lbl-customEnabled">تفعيل مواقع مخصصة</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="customEnabled">
+          <span class="track"></span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Custom Sites Panel -->
+  <div class="custom-panel" id="customPanel">
+    <div class="custom-panel-inner">
+      <div class="sites-list" id="sitesList"></div>
+      <div class="add-site-row">
+        <input type="text" id="siteInput" placeholder="example.com" dir="ltr">
+        <button class="add-btn" id="addSiteBtn">＋</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Options Section -->
+  <div class="section">
+    <div class="section-title" id="lbl-options">الخيارات</div>
+    <div class="cards">
+
+      <div class="card" id="card-forceTextAlignRight">
+        <div class="card-left">
+          <div class="card-icon">⇒</div>
+          <span class="card-text" id="lbl-forceTextAlignRight">محاذاة النص لليمين</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="forceTextAlignRight">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="card" id="card-improveArabicFont">
+        <div class="card-left">
+          <div class="card-icon">ف</div>
+          <span class="card-text" id="lbl-improveArabicFont">تحسين الخط العربي</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="improveArabicFont">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="card" id="card-targetInputsOnly">
+        <div class="card-left">
+          <div class="card-icon">✏️</div>
+          <span class="card-text" id="lbl-targetInputsOnly">فقط حقول الإدخال</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="targetInputsOnly">
+          <span class="track"></span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-dot">
+      <div class="dot" id="statusDot"></div>
+      <span id="statusText">نشط</span>
+    </div>
+    <span class="version">v1.0.0</span>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">
+    <span id="lbl-credit-by">تم التطوير بواسطة</span>
+    <a href="https://x.com/REMiX_KSA" target="_blank" id="credit-link">
+      <span class="credit-x">𝕏</span>
+      <span id="lbl-credit-name">خالد · عالم الراوترات</span>
+    </a>
+  </div>
+
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

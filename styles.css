@@ -1,0 +1,86 @@
+/* ── Reset: keep page LTR by default ── */
+body {
+  direction: ltr !important;
+}
+
+/* ══════════════════════════════════════
+   RTL MODE — applied when .khalid-rtl
+   is on <body>
+══════════════════════════════════════ */
+
+/* Claude uses these containers for AI responses */
+.khalid-rtl [class*="prose"],
+.khalid-rtl [class*="markdown"],
+.khalid-rtl [class*="message"],
+.khalid-rtl [class*="content"],
+.khalid-rtl [class*="response"],
+.khalid-rtl [class*="answer"],
+.khalid-rtl p,
+.khalid-rtl li,
+.khalid-rtl h1,
+.khalid-rtl h2,
+.khalid-rtl h3,
+.khalid-rtl h4,
+.khalid-rtl h5,
+.khalid-rtl h6,
+.khalid-rtl blockquote {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+/* Lists */
+.khalid-rtl ul,
+.khalid-rtl ol {
+  direction: rtl;
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+/* ══════════════════════════════════════
+   FORCE RIGHT ALIGN
+══════════════════════════════════════ */
+.khalid-force-right [class*="prose"],
+.khalid-force-right [class*="markdown"],
+.khalid-force-right [class*="message"],
+.khalid-force-right [class*="content"],
+.khalid-force-right [class*="response"],
+.khalid-force-right [class*="answer"],
+.khalid-force-right p,
+.khalid-force-right li,
+.khalid-force-right h1,
+.khalid-force-right h2,
+.khalid-force-right h3,
+.khalid-force-right h4,
+.khalid-force-right h5,
+.khalid-force-right h6,
+.khalid-force-right blockquote {
+  text-align: right !important;
+}
+
+/* ══════════════════════════════════════
+   INPUTS ONLY MODE
+══════════════════════════════════════ */
+.khalid-inputs-only * {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.khalid-inputs-only textarea,
+.khalid-inputs-only input[type="text"],
+.khalid-inputs-only [contenteditable="true"],
+.khalid-inputs-only [contenteditable] {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* ══════════════════════════════════════
+   ARABIC FONT
+══════════════════════════════════════ */
+.khalid-arabic-font,
+.khalid-arabic-font [class*="prose"],
+.khalid-arabic-font [class*="markdown"],
+.khalid-arabic-font [class*="message"],
+.khalid-arabic-font p,
+.khalid-arabic-font li {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif !important;
+}
