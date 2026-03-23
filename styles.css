@@ -1,20 +1,9 @@
-/* ── Reset: keep page LTR by default ── */
-body {
-  direction: ltr !important;
-}
-
 /* ══════════════════════════════════════
-   RTL MODE — applied when .khalid-rtl
-   is on <body>
+   RTL MODE — only when .khalid-rtl
+   is added to <body> by content.js
+   Nothing here runs unless the class exists
 ══════════════════════════════════════ */
 
-/* Claude uses these containers for AI responses */
-.khalid-rtl [class*="prose"],
-.khalid-rtl [class*="markdown"],
-.khalid-rtl [class*="message"],
-.khalid-rtl [class*="content"],
-.khalid-rtl [class*="response"],
-.khalid-rtl [class*="answer"],
 .khalid-rtl p,
 .khalid-rtl li,
 .khalid-rtl h1,
@@ -23,12 +12,16 @@ body {
 .khalid-rtl h4,
 .khalid-rtl h5,
 .khalid-rtl h6,
-.khalid-rtl blockquote {
+.khalid-rtl blockquote,
+.khalid-rtl [class*="prose"],
+.khalid-rtl [class*="markdown"],
+.khalid-rtl [class*="message"],
+.khalid-rtl [class*="content"],
+.khalid-rtl [class*="response"] {
   direction: rtl;
   unicode-bidi: plaintext;
 }
 
-/* Lists */
 .khalid-rtl ul,
 .khalid-rtl ol {
   direction: rtl;
@@ -39,12 +32,6 @@ body {
 /* ══════════════════════════════════════
    FORCE RIGHT ALIGN
 ══════════════════════════════════════ */
-.khalid-force-right [class*="prose"],
-.khalid-force-right [class*="markdown"],
-.khalid-force-right [class*="message"],
-.khalid-force-right [class*="content"],
-.khalid-force-right [class*="response"],
-.khalid-force-right [class*="answer"],
 .khalid-force-right p,
 .khalid-force-right li,
 .khalid-force-right h1,
@@ -53,18 +40,18 @@ body {
 .khalid-force-right h4,
 .khalid-force-right h5,
 .khalid-force-right h6,
-.khalid-force-right blockquote {
+.khalid-force-right blockquote,
+.khalid-force-right [class*="prose"],
+.khalid-force-right [class*="markdown"],
+.khalid-force-right [class*="message"],
+.khalid-force-right [class*="content"],
+.khalid-force-right [class*="response"] {
   text-align: right !important;
 }
 
 /* ══════════════════════════════════════
    INPUTS ONLY MODE
 ══════════════════════════════════════ */
-.khalid-inputs-only * {
-  direction: ltr !important;
-  text-align: left !important;
-}
-
 .khalid-inputs-only textarea,
 .khalid-inputs-only input[type="text"],
 .khalid-inputs-only [contenteditable="true"],
@@ -76,11 +63,9 @@ body {
 /* ══════════════════════════════════════
    ARABIC FONT
 ══════════════════════════════════════ */
-.khalid-arabic-font,
-.khalid-arabic-font [class*="prose"],
-.khalid-arabic-font [class*="markdown"],
-.khalid-arabic-font [class*="message"],
 .khalid-arabic-font p,
-.khalid-arabic-font li {
+.khalid-arabic-font li,
+.khalid-arabic-font [class*="prose"],
+.khalid-arabic-font [class*="message"] {
   font-family: "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
