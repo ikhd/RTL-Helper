@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "RTL Helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "RTL and Arabic readability helper for Claude and custom websites.",
   "permissions": ["storage"],
   "host_permissions": [
