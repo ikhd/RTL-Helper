@@ -8,7 +8,7 @@
 
 <br/>
 
-![Version](https://img.shields.io/badge/version-1.0.0-7c6af7?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Version](https://img.shields.io/badge/version-1.0.1-7c6af7?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![Manifest](https://img.shields.io/badge/manifest-v3-5be0c8?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-ff5f7e?style=for-the-badge)
 ![Language](https://img.shields.io/badge/AR%20%2F%20EN-bilingual-f5a623?style=for-the-badge)
