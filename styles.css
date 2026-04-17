@@ -29,6 +29,13 @@
   padding-left: 0;
 }
 
+.khalid-rtl code,
+.khalid-rtl [class*="code"],
+.khalid-rtl [aria-label*="code"] {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+}
+
 /* ══════════════════════════════════════
    FORCE RIGHT ALIGN
 ══════════════════════════════════════ */
@@ -47,6 +54,12 @@
 .khalid-force-right [class*="content"],
 .khalid-force-right [class*="response"] {
   text-align: right !important;
+}
+
+.khalid-force-right code,
+.khalid-force-right [class*="code"],
+.khalid-force-right [aria-label*="code"] {
+  text-align: left !important;
 }
 
 /* ══════════════════════════════════════
