@@ -1,71 +1,52 @@
+/* ══════════════════════════════════════════════════════════════════
+   RTL Helper — styles.css  (v2.0.0)
+   
+   Direction is now handled per-element via the native HTML `dir="auto"`
+   attribute, set by content.js. There is NO `direction: rtl` rule
+   anywhere in this file — that was the cause of:
+     • Claude's sidebar flipping to the wrong side
+     • ProseMirror editor losing text while typing
+     • English text being mirrored
+   
+   This file only contains optional opt-in cosmetic rules:
+     • text-align: right     (when force-right is on)
+     • Arabic font stack     (when arabic-font is on)
+     • unicode-bidi: plaintext on inputs (when inputs-only is on)
+══════════════════════════════════════════════════════════════════ */
+
+
 /* ══════════════════════════════════════
-   RTL MODE — only when .khalid-rtl
-   is added to <body> by content.js
-   Nothing here runs unless the class exists
+   FORCE RIGHT ALIGN  (.khalid-force-right)
+   Only targets elements we tagged ourselves — guaranteed safe.
 ══════════════════════════════════════ */
-
-.khalid-rtl p,
-.khalid-rtl li,
-.khalid-rtl h1,
-.khalid-rtl h2,
-.khalid-rtl h3,
-.khalid-rtl h4,
-.khalid-rtl h5,
-.khalid-rtl h6,
-.khalid-rtl blockquote,
-.khalid-rtl [class*="prose"],
-.khalid-rtl [class*="markdown"],
-.khalid-rtl [class*="message"],
-.khalid-rtl [class*="content"],
-.khalid-rtl [class*="response"] {
-  direction: rtl;
-  unicode-bidi: plaintext;
+.khalid-force-right [data-khalid-dir] {
+  text-align: right;
 }
 
-.khalid-rtl ul,
-.khalid-rtl ol {
-  direction: rtl;
-  padding-right: 20px;
-  padding-left: 0;
-}
 
 /* ══════════════════════════════════════
-   FORCE RIGHT ALIGN
+   ARABIC FONT  (.khalid-arabic-font)
+   Same scoping rule — only touches elements we tagged.
 ══════════════════════════════════════ */
-.khalid-force-right p,
-.khalid-force-right li,
-.khalid-force-right h1,
-.khalid-force-right h2,
-.khalid-force-right h3,
-.khalid-force-right h4,
-.khalid-force-right h5,
-.khalid-force-right h6,
-.khalid-force-right blockquote,
-.khalid-force-right [class*="prose"],
-.khalid-force-right [class*="markdown"],
-.khalid-force-right [class*="message"],
-.khalid-force-right [class*="content"],
-.khalid-force-right [class*="response"] {
-  text-align: right !important;
+.khalid-arabic-font [data-khalid-dir] {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 
+
 /* ══════════════════════════════════════
-   INPUTS ONLY MODE
+   INPUTS ONLY MODE  (.khalid-inputs-only)
+   Uses unicode-bidi: plaintext on editable fields — this lets
+   ProseMirror and contenteditable handle direction per paragraph
+   from the first strong character. Safe; no layout impact.
 ══════════════════════════════════════ */
 .khalid-inputs-only textarea,
 .khalid-inputs-only input[type="text"],
+.khalid-inputs-only input[type="search"],
+.khalid-inputs-only input[type="email"],
+.khalid-inputs-only input[type="url"],
+.khalid-inputs-only input:not([type]),
 .khalid-inputs-only [contenteditable="true"],
-.khalid-inputs-only [contenteditable] {
-  direction: rtl !important;
-  text-align: right !important;
-}
-
-/* ══════════════════════════════════════
-   ARABIC FONT
-══════════════════════════════════════ */
-.khalid-arabic-font p,
-.khalid-arabic-font li,
-.khalid-arabic-font [class*="prose"],
-.khalid-arabic-font [class*="message"] {
-  font-family: "Segoe UI", Tahoma, Arial, sans-serif !important;
+.khalid-inputs-only [contenteditable=""],
+.khalid-inputs-only .ProseMirror {
+  unicode-bidi: plaintext;
 }
