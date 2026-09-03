@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "RTL Helper",
-  "version": "2.0.0",
-  "description": "RTL and Arabic readability helper for Claude and custom websites.",
+  "version": "2.1.0",
+  "description": "RTL and Arabic readability helper for Claude, ChatGPT, and custom websites.",
   "permissions": ["storage"],
   "host_permissions": [
     "https://claude.ai/*",

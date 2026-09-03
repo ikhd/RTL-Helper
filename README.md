@@ -4,11 +4,11 @@
 
 <h1>RTL Helper</h1>
 
-<p>A lightweight Chrome extension that brings proper RTL support and Arabic readability to Claude and any custom website — with a clean bilingual UI.</p>
+<p>A lightweight Chrome extension that brings proper RTL support and Arabic readability to Claude, ChatGPT, and any custom website — with a clean bilingual UI.</p>
 
 <br/>
 
-![Version](https://img.shields.io/badge/version-1.0.1-7c6af7?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Version](https://img.shields.io/badge/version-2.1.0-7c6af7?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![Manifest](https://img.shields.io/badge/manifest-v3-5be0c8?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-ff5f7e?style=for-the-badge)
 ![Language](https://img.shields.io/badge/AR%20%2F%20EN-bilingual-f5a623?style=for-the-badge)
@@ -38,6 +38,7 @@
 | Feature | Description |
 |---|---|
 | 🧠 **Claude Support** | Enabled by default — RTL applied automatically on `claude.ai` |
+| 💬 **ChatGPT Support** | Independent toggle for `chatgpt.com` and legacy `chat.openai.com` |
 | 🌐 **Custom Sites** | Add unlimited domains to apply RTL to any website |
 | ⇒ **Force Right Align** | Overrides text alignment for Arabic content |
 | ف **Arabic Font** | Switches to a cleaner Arabic-friendly font stack |
@@ -86,7 +87,7 @@ rtl-helper/
 ## ⚙️ How It Works
 
 ```
-User opens Claude (or a custom site)
+User opens Claude, ChatGPT, or a custom site
         │
         ▼
 content.js checks chrome.storage.sync
@@ -94,15 +95,13 @@ content.js checks chrome.storage.sync
         ├─ enabled? ──────────────── No  ──▶ Remove all RTL classes
         │
         ├─ claude.ai + claudeEnabled ──▶ Apply RTL
-        │
-        └─ customEnabled + host match ──▶ Apply RTL
+        ├─ chatgpt.com + chatgptEnabled ──▶ Apply RTL
+        └─ customEnabled + exact domain match ──▶ Apply RTL
                 │
                 ▼
-        Injects CSS classes on <body>:
-        .khalid-rtl
-        .khalid-force-right
-        .khalid-arabic-font
-        .khalid-inputs-only
+        Detects Arabic prose blocks inside <main>
+        and marks only those blocks as RTL.
+        Inline code remains isolated as LTR.
 ```
 
 ---
@@ -113,6 +112,7 @@ content.js checks chrome.storage.sync
 |---|---|---|
 | `enabled` | `true` | Master on/off switch |
 | `claudeEnabled` | `true` | Apply RTL on `claude.ai` |
+| `chatgptEnabled` | `true` | Apply RTL on `chatgpt.com` and `chat.openai.com` |
 | `customEnabled` | `false` | Apply RTL on custom domains |
 | `customSites` | `[]` | Array of custom domain patterns |
 | `forceTextAlignRight` | `true` | Force `text-align: right` on content |
@@ -129,6 +129,7 @@ Settings are persisted via `chrome.storage.sync` and sync across Chrome profiles
 By default, RTL Helper is active on:
 
 - ✅ `claude.ai` — enabled out of the box
+- ✅ `chatgpt.com` — enabled out of the box with an independent toggle
 - ➕ Any site you add via the **custom sites** panel in the popup
 
 ---

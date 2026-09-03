@@ -16,11 +16,13 @@
 
 body {
   width: 320px;
+  max-height: 600px;
   background: var(--bg);
   color: var(--text);
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
   font-size: 14px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body::before {
@@ -60,7 +62,7 @@ body::before {
 }
 .lang-btn {
   padding: 4px 10px; font-size: 11px;
-  font-family: 'IBM Plex Mono', monospace; font-weight: 500;
+  font-family: Consolas, 'Courier New', monospace; font-weight: 500;
   cursor: pointer; border: none; background: transparent;
   color: var(--text-muted); transition: all 0.15s;
 }
@@ -91,7 +93,7 @@ body::before {
 .section-title {
   font-size: 10px; font-weight: 500; color: var(--text-muted);
   text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 0 2px 5px; font-family: 'IBM Plex Mono', monospace;
+  padding: 0 2px 5px; font-family: Consolas, 'Courier New', monospace;
 }
 .cards { display: flex; flex-direction: column; gap: 4px; }
 
@@ -148,7 +150,7 @@ body::before {
   animation: tagIn 0.15s ease;
 }
 @keyframes tagIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
-.site-tag span { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--accent2); }
+.site-tag span { font-family: Consolas, 'Courier New', monospace; font-size: 11.5px; color: var(--accent2); }
 .site-tag-remove {
   background: none; border: none; cursor: pointer;
   color: var(--text-muted); font-size: 14px; line-height: 1;
@@ -161,7 +163,7 @@ body::before {
   flex: 1; padding: 7px 10px;
   background: var(--surface2); border: 1px solid var(--border);
   border-radius: 6px; color: var(--text);
-  font-family: 'IBM Plex Mono', monospace; font-size: 12px; outline: none;
+  font-family: Consolas, 'Courier New', monospace; font-size: 12px; outline: none;
   transition: border-color 0.15s; direction: ltr; text-align: left;
 }
 .add-site-row input:focus { border-color: var(--accent); }
@@ -186,7 +188,7 @@ body::before {
 .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
 .dot.on { background: var(--accent2); box-shadow: 0 0 6px var(--accent2); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
-.version { font-size: 10px; color: var(--text-muted); font-family: 'IBM Plex Mono', monospace; }
+.version { font-size: 10px; color: var(--text-muted); font-family: Consolas, 'Courier New', monospace; }
 
 /* ── Credit ── */
 .credit {

@@ -1,6 +1,7 @@
 const DEFAULT_SETTINGS = {
   enabled: true,
   claudeEnabled: true,
+  chatgptEnabled: true,
   customEnabled: false,
   customSites: [],
   forceTextAlignRight: true,

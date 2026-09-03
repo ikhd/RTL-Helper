@@ -1,52 +1,41 @@
-/* ══════════════════════════════════════════════════════════════════
-   RTL Helper — styles.css  (v2.0.0)
-   
-   Direction is now handled per-element via the native HTML `dir="auto"`
-   attribute, set by content.js. There is NO `direction: rtl` rule
-   anywhere in this file — that was the cause of:
-     • Claude's sidebar flipping to the wrong side
-     • ProseMirror editor losing text while typing
-     • English text being mirrored
-   
-   This file only contains optional opt-in cosmetic rules:
-     • text-align: right     (when force-right is on)
-     • Arabic font stack     (when arabic-font is on)
-     • unicode-bidi: plaintext on inputs (when inputs-only is on)
-══════════════════════════════════════════════════════════════════ */
+/* RTL Helper — injected page styles (v2.1.0) */
 
-
-/* ══════════════════════════════════════
-   FORCE RIGHT ALIGN  (.khalid-force-right)
-   Only targets elements we tagged ourselves — guaranteed safe.
-══════════════════════════════════════ */
-.khalid-force-right [data-khalid-dir] {
-  text-align: right;
+/* Only Arabic prose blocks selected by content.js receive RTL. */
+[data-khalid-dir] {
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: start;
 }
 
+.khalid-force-right [data-khalid-dir] {
+  text-align: right !important;
+}
 
-/* ══════════════════════════════════════
-   ARABIC FONT  (.khalid-arabic-font)
-   Same scoping rule — only touches elements we tagged.
-══════════════════════════════════════ */
-.khalid-arabic-font [data-khalid-dir] {
+.khalid-arabic-font [data-khalid-dir],
+.khalid-arabic-font [data-khalid-input] {
   font-family: "Segoe UI", Tahoma, Arial, sans-serif !important;
 }
 
+/* Keep technical fragments stable inside an RTL paragraph. */
+[data-khalid-code] {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
 
-/* ══════════════════════════════════════
-   INPUTS ONLY MODE  (.khalid-inputs-only)
-   Uses unicode-bidi: plaintext on editable fields — this lets
-   ProseMirror and contenteditable handle direction per paragraph
-   from the first strong character. Safe; no layout impact.
-══════════════════════════════════════ */
-.khalid-inputs-only textarea,
-.khalid-inputs-only input[type="text"],
-.khalid-inputs-only input[type="search"],
-.khalid-inputs-only input[type="email"],
-.khalid-inputs-only input[type="url"],
-.khalid-inputs-only input:not([type]),
-.khalid-inputs-only [contenteditable="true"],
-.khalid-inputs-only [contenteditable=""],
-.khalid-inputs-only .ProseMirror {
+pre[data-khalid-code] {
+  text-align: left !important;
+}
+
+pre[data-khalid-code] code[data-khalid-code] {
+  unicode-bidi: normal !important;
+}
+
+/* Native dir=auto chooses the input direction from its first strong letter. */
+[data-khalid-input] {
   unicode-bidi: plaintext;
+  text-align: start;
+}
+
+.khalid-force-right [data-khalid-input] {
+  text-align: right !important;
 }

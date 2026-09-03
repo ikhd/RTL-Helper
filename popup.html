@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>RTL Helper</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
@@ -51,6 +50,17 @@
         </div>
         <label class="toggle">
           <input type="checkbox" id="claudeEnabled">
+          <span class="track"></span>
+        </label>
+      </div>
+
+      <div class="card" id="card-chatgptEnabled">
+        <div class="card-left">
+          <div class="card-icon">💬</div>
+          <span class="card-text" id="lbl-chatgptEnabled">تفعيل على ChatGPT</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="chatgptEnabled">
           <span class="track"></span>
         </label>
       </div>
@@ -129,7 +139,7 @@
       <div class="dot" id="statusDot"></div>
       <span id="statusText">نشط</span>
     </div>
-    <span class="version">v1.0.1</span>
+    <span class="version" id="versionText">v2.1.0</span>
   </div>
 
   <!-- Credit -->

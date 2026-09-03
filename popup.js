@@ -2,6 +2,7 @@
 const DEFAULTS = {
   enabled: true,
   claudeEnabled: true,
+  chatgptEnabled: true,
   customEnabled: false,
   customSites: [],
   forceTextAlignRight: true,
@@ -11,7 +12,7 @@ const DEFAULTS = {
 };
 
 const BOOL_FIELDS = [
-  "enabled", "claudeEnabled", "customEnabled",
+  "enabled", "claudeEnabled", "chatgptEnabled", "customEnabled",
   "forceTextAlignRight", "improveArabicFont", "targetInputsOnly"
 ];
 
@@ -24,6 +25,7 @@ const I18N = {
     "lbl-sites":               "المواقع",
     "lbl-options":             "الخيارات",
     "lbl-claudeEnabled":       "تفعيل على Claude",
+    "lbl-chatgptEnabled":      "تفعيل على ChatGPT",
     "lbl-customEnabled":       "تفعيل مواقع مخصصة",
     "lbl-forceTextAlignRight": "محاذاة النص لليمين",
     "lbl-improveArabicFont":   "تحسين الخط العربي",
@@ -42,6 +44,7 @@ const I18N = {
     "lbl-sites":               "Sites",
     "lbl-options":             "Options",
     "lbl-claudeEnabled":       "Enable on Claude",
+    "lbl-chatgptEnabled":      "Enable on ChatGPT",
     "lbl-customEnabled":       "Enable custom sites",
     "lbl-forceTextAlignRight": "Force right alignment",
     "lbl-improveArabicFont":   "Improve Arabic font",
@@ -86,6 +89,19 @@ async function sSet(obj) {
 // ── DOM helper ────────────────────────────────────
 function el(id) { return document.getElementById(id); }
 
+function normalizeSite(value) {
+  let candidate = value.trim().toLowerCase().replace(/^\*\./, "");
+  if (!candidate) return "";
+  try {
+    const url = new URL(
+      /^[a-z][a-z\d+.-]*:\/\//i.test(candidate) ? candidate : "https://" + candidate
+    );
+    return url.hostname.toLowerCase().replace(/^\*\./, "").replace(/^\.+|\.+$/g, "");
+  } catch (_) {
+    return "";
+  }
+}
+
 // ── Render custom sites list ───────────────────────
 function renderSites() {
   const list = el("sitesList");
@@ -120,7 +136,7 @@ function renderSites() {
 
 function addSite() {
   const input = el("siteInput");
-  const val = input.value.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+  const val = normalizeSite(input.value);
   if (!val || customSites.includes(val)) { input.value = ""; return; }
   customSites.push(val);
   renderSites();
@@ -152,7 +168,7 @@ function updateStatusUI() {
 // ── Apply translations ─────────────────────────────
 const TEXT_KEYS = [
   "subtitle", "lbl-enabled", "lbl-enabled-sub", "lbl-sites", "lbl-options",
-  "lbl-claudeEnabled", "lbl-customEnabled", "lbl-forceTextAlignRight",
+  "lbl-claudeEnabled", "lbl-chatgptEnabled", "lbl-customEnabled", "lbl-forceTextAlignRight",
   "lbl-improveArabicFont", "lbl-targetInputsOnly", "lbl-credit-by", "lbl-credit-name"
 ];
 
@@ -192,6 +208,10 @@ async function save() {
 async function load() {
   const s = await sGet(DEFAULTS);
 
+  if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.getManifest) {
+    el("versionText").textContent = "v" + chrome.runtime.getManifest().version;
+  }
+
   BOOL_FIELDS.forEach(f => {
     const node = el(f);
     if (node) node.checked = Boolean(s[f]);
@@ -226,7 +246,7 @@ function bindEvents() {
   el("enabled").addEventListener("change", () => { updateStatusUI(); save(); });
 
   // Checkboxes + card clicks
-  ["claudeEnabled", "customEnabled", "forceTextAlignRight", "improveArabicFont", "targetInputsOnly"]
+  ["claudeEnabled", "chatgptEnabled", "customEnabled", "forceTextAlignRight", "improveArabicFont", "targetInputsOnly"]
     .forEach(fieldId => {
       const card     = el("card-" + fieldId);
       const checkbox = el(fieldId);
